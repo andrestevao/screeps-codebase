@@ -4,9 +4,14 @@ module.exports = (creepObject) => {
   const maxEnergy = store.getCapacity(RESOURCE_ENERGY);
   const availableCapacity = store.getFreeCapacity(RESOURCE_ENERGY);
 
-  creepObject.say(`${energy}/${maxEnergy}`);
-
   if(availableCapacity === 0){
+    creepObject.memory.delivering = true;
+    creepObject.say(`FULL`);
+  }else {
+    creepObject.say(`${energy}/${maxEnergy}`);
+  }
+
+  if(creepObject.memory.delivering === true){
     deliver(creepObject);
     return;
   }
@@ -18,7 +23,7 @@ module.exports = (creepObject) => {
   const target = Game.getObjectById(creepObject.memory.resourceTarget);
 
   if(creepObject.harvest(target) == ERR_NOT_IN_RANGE) {
-    const tryMove = creepObject.moveTo(target, { visualizePathStyle: { stroke: '#00FF00' } }); //green
+    const tryMove = creepObject.moveTo(target, { visualizePathStyle: { stroke: '#00FF00', opacity: 1 } }); //green
 
     if(tryMove === -2){
       changeTarget(creepObject);
@@ -35,6 +40,7 @@ const changeTarget = creepObject => {
   allResources.map(resource => {
     if(resource.id != currentTarget){
       creepObject.memory.resourceTarget = resource.id;
+      return;
     }
   });
 }
@@ -42,7 +48,13 @@ const changeTarget = creepObject => {
 const deliver = creepObject => {
   //choose where to deliver, based on last delivery
 
-  creepObject.say('FULL');
+  if(!creepObject.memory.finishedDelivering){
+    creepObject.memory.finishedDelivering = false;
+  }
+
+  if(!creepObject.memory.lastDelivery){
+    creepObject.memory.lastDelivery = 'spawn';
+  }
 
   const lastDelivery = creepObject.memory.lastDelivery;
 
@@ -50,14 +62,15 @@ const deliver = creepObject => {
     //deliver to controller
     const roomController = Game.spawns[creepObject.memory.homeSpawn].room.controller;
 
-    console.log('trying to deliver to controller', roomController);
-
     const tryUpgrade = creepObject.upgradeController(roomController);
+
     if(tryUpgrade == ERR_NOT_IN_RANGE){
-      creepObject.moveTo(roomController, { visualizePathStyle: { stroke: '#FF0000' } }); //red
+      creepObject.moveTo(roomController, { visualizePathStyle: { stroke: '#FF0000', opacity: 1 } }); //red
     }
 
-    if(tryUpgrade == OK){
+    //check if there is more energy to be delivered
+    if(creepObject.store.energy == 0){
+      creepObject.memory.delivering = false;
       creepObject.memory.lastDelivery = 'controller';
     }
 
@@ -67,12 +80,17 @@ const deliver = creepObject => {
     const homeSpawn = Game.spawns[creepObject.memory.homeSpawn];
 
     const tryTransfer = creepObject.transfer(homeSpawn, RESOURCE_ENERGY);
+
     if(tryTransfer == ERR_NOT_IN_RANGE) {
-      creepObject.moveTo(homeSpawn, { visualizePathStyle: { stroke: '#0000FF' } }); // blue
+      creepObject.moveTo(homeSpawn, { visualizePathStyle: { stroke: '#0000FF', opacity: 1 } }); // blue
     }
 
     if(tryTransfer == OK) {
-      creepObject.memory.lastDelivery = 'spawn';
+      //check if there is more energy to be delivered
+      if(creepObject.store.energy == 0){
+        creepObject.memory.delivering = false;
+        creepObject.memory.lastDelivery = 'spawn';
+      }
     }
 
     return;

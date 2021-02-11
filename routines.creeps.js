@@ -1,4 +1,7 @@
 const coletorProcedure = require('procedure.coletor');
+const construtorProcedure = require('procedure.construtor');
+
+const config = require('./config');
 
 module.exports = () => {
   const creeps = Game.creeps;
@@ -11,6 +14,10 @@ module.exports = () => {
       case 'coletor':
         coletorProcedure(creepObject);
         break;
+      case 'construtor':
+        construtorProcedure(creepObject);
+        break;
     }
   }
+
 }
