@@ -85,12 +85,10 @@ const deliver = creepObject => {
       creepObject.moveTo(homeSpawn, { visualizePathStyle: { stroke: '#0000FF', opacity: 1 } }); // blue
     }
 
-    if(tryTransfer == OK) {
-      //check if there is more energy to be delivered
-      if(creepObject.store.energy == 0){
-        creepObject.memory.delivering = false;
-        creepObject.memory.lastDelivery = 'spawn';
-      }
+    //check if there is more energy to be delivered
+    if(creepObject.store.energy == 0){
+      creepObject.memory.delivering = false;
+      creepObject.memory.lastDelivery = 'spawn';
     }
 
     return;
