@@ -18,7 +18,8 @@ module.exports = (creepObject) => {
   const target = Game.getObjectById(creepObject.memory.resourceTarget);
 
   if(creepObject.harvest(target) == ERR_NOT_IN_RANGE) {
-    const tryMove = creepObject.moveTo(target);
+    const tryMove = creepObject.moveTo(target, { visualizePathStyle: { stroke: '#00FF00' } }); //green
+
     if(tryMove === -2){
       changeTarget(creepObject);
     }
@@ -53,7 +54,7 @@ const deliver = creepObject => {
 
     const tryUpgrade = creepObject.upgradeController(roomController);
     if(tryUpgrade == ERR_NOT_IN_RANGE){
-      creepObject.moveTo(roomController)
+      creepObject.moveTo(roomController, { visualizePathStyle: { stroke: '#FF0000' } }); //red
     }
 
     if(tryUpgrade == OK){
@@ -67,7 +68,7 @@ const deliver = creepObject => {
 
     const tryTransfer = creepObject.transfer(homeSpawn, RESOURCE_ENERGY);
     if(tryTransfer == ERR_NOT_IN_RANGE) {
-      creepObject.moveTo(homeSpawn);
+      creepObject.moveTo(homeSpawn, { visualizePathStyle: { stroke: '#0000FF' } }); // blue
     }
 
     if(tryTransfer == OK) {
