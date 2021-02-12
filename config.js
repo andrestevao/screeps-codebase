@@ -1,3 +1,3 @@
 module.exports = {
-  maxCreeps: 20,
+  maxCreeps: 40,
 }

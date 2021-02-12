@@ -6,7 +6,7 @@ const config = require('./config');
 module.exports = () => {
   const creeps = Game.creeps;
 
-  for(creepName in creeps){
+  for(const creepName in creeps){
     const creepObject = creeps[creepName];
     const role = creepObject.memory.role;
 

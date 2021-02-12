@@ -78,7 +78,6 @@ const changeLocation = (creepObject) => {
   const room = creepObject.room;
   const allConstructionSites = room.find(FIND_CONSTRUCTION_SITES);
 
-  console.log('chegando aqui');
   allConstructionSites.map(site => {
     if(site.id != creepObject.memory.currentConstruction){
       creepObject.memory.currentConstruction = site.id;
