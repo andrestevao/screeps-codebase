@@ -1,21 +1,11 @@
-const spawnsRoutine = require('./routines.spawns');
-const creepsRoutine = require('./routines.creeps');
-const towersRoutine = require('./routines.towers');
+//CommandCenter = main global object that contains
+//all info about player colony, based on the spawns
+//(mainly to avoid parsing everything all the time)
+const CommandCenter = require('./class.command.center');
 
 module.exports.loop = () => {
-  spawnsRoutine();
-  creepsRoutine();
-  towersRoutine();
 
-  let coletores = 0;
-  let construtores = 0;
-  for(const creep in Game.creeps){
-    const creepObject = Game.creeps[creep];
-    if(creepObject.memory.role === 'construtor'){
-      construtores++;
-    }else{
-      coletores++;
-    }
-  }
+  let commandCenter = new CommandCenter();
+  commandCenter.tick();
 
 }
