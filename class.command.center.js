@@ -4,14 +4,16 @@ const ControlTowersCentral = require('./class.control.towers.central');
 class CommandCenter {
   constructor() {
     //load command center memory
-    const previousMemory = JSON.parse(Memory.commandCenter);
 
-    if(previousMemory){
+    if(Memory.commandCenter){
+      const previousMemory = JSON.parse(Memory.commandCenter);
+
       this.createdOn = previousMemory.createdOn;
       this.allSpawns = previousMemory.allSpawns;
       this.expireDate = previousMemory.expireDate;
     }else{
-      refreshCommandCenterMemory();
+      this.refreshCommandCenterMemory();
+      this.saveNewMemory();
     }
 
     //load required classes to operate later
@@ -29,7 +31,7 @@ class CommandCenter {
       this.saveNewMemory();
     }
 
-    this.controlTowersCentral.setControlTowers();
+    this.controlTowersCentral.tick();
   }
 
   refreshCommandCenterMemory(){
