@@ -16,6 +16,31 @@ const operateTowers = (roomObject) => {
       //console.log(`Tower ${tower.id} trying to attack hostile creep ${hostiles[0].id}. Result = ${tryAttack}`);
     });
   }
+
+  //are there any structures to repair?
+  const myStructures = roomObject.find(FIND_MY_STRUCTURES);
+  myStructures.map(structureObject => {
+    console.log('structureObject', JSON.stringify(structureObject));
+  });
+
+  const toRepair = roomObject.find(FIND_STRUCTURES, 
+    { 
+      filter: (structure) => { 
+        return (structure.hits < 5000) && (structure.hits > 0);
+      }
+    }
+  );
+
+  //repair a random structure that needs repairing
+
+  const randomIndex = Math.floor(Math.random() * (toRepair.length - 1));
+  const structureObject = toRepair[randomIndex];
+
+  towersInThisRoom.forEach(tower => {
+    const tryRepair = tower.repair(structureObject);
+    console.log(`Tower ${tower.id} trying to repair ${structureObject.id}. Result = ${tryRepair}`);
+  });
+
 };
 
 module.exports = () => {

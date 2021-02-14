@@ -53,6 +53,10 @@ const construct = creepObject => {
 
   if(creepObject.memory.currentConstruction){
     const targetConstruction = Game.getObjectById(creepObject.memory.currentConstruction);
+    
+    if(!targetConstruction){
+        changeLocation(creepObject);
+    }
 
     if(creepObject.build(targetConstruction) == ERR_NOT_IN_RANGE) {
       const tryMove = creepObject.moveTo(targetConstruction, { visualizePathStyle: { stroke: '#FF00FF', opacity: 1 } });

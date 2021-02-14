@@ -151,6 +151,10 @@ const deliverToTower = (creepObject) => {
   if(tryTransfer == ERR_NOT_IN_RANGE) {
     creepObject.moveTo(randomTower, { visualizePathStyle: { stroke: '#FFFF00', opacity: 1 } }); // yellow
   }
+  
+  if(tryTransfer == ERR_FULL){
+      creepObject.memory.lastDelivery = 'tower';
+  }
 
   //check if there is more energy to be delivered
   if(creepObject.store.energy == 0){

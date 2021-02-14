@@ -17,5 +17,7 @@ module.exports.loop = () => {
       coletores++;
     }
   }
+  
+  console.log(`There are ${coletores} coletores and ${construtores} construtores in the colony`);
 
 }
