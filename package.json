@@ -1,0 +1,32 @@
+{
+  "name": "screeps-codebase",
+  "version": "1.0.0",
+  "description": "alo",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist/*",
+    "build": "tsc",
+    "send": "grunt screeps",
+    "runAll": "npm run clean && npm run build && npm run send"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrestevao/screeps-codebase.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrestevao/screeps-codebase/issues"
+  },
+  "homepage": "https://github.com/andrestevao/screeps-codebase#readme",
+  "dependencies": {
+    "@types/screeps": "^3.2.1",
+    "grunt-screeps": "^1.5.0",
+    "typescript": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.28",
+    "grunt": "^1.3.0"
+  }
+}
