@@ -1,7 +1,7 @@
 # AdjutantAI - My screeps codebase
 
 ## "Adjutant"?
-When i started playing, i took a look at [Overmind](https://github.com/bencbartlett/Overmind) project, and saw that most naming was based on Starcraft's Zerg race, so i figured i would name my stuff based on Starcraft's Terran Race! That's why i'm naming this "AI" [Adjutant](https://starcraft.fandom.com/wiki/Adjutant).
+When i started playing [Screeps](https://screeps.com/), i started looking around for players codebases and i found the [Overmind](https://github.com/bencbartlett/Overmind) project, saw that most naming was based on Starcraft's Zerg race, and i figured i would name my stuff based on Starcraft's Terran Race! That's why i'm naming this project [Adjutant](https://starcraft.fandom.com/wiki/Adjutant).
 
 ## usage
 
