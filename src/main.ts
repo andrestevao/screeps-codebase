@@ -1,8 +1,9 @@
-const CommandCenterClass = require('./class.command.center');
-const commandCenter = new CommandCenterClass();
+import { AdjutantAI } from './class.ai';
+
+const gameAI = new AdjutantAI();
 
 module.exports.loop = () => {
 
-  commandCenter.tick();
+  gameAI.tick();
 
 }
