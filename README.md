@@ -1,4 +1,7 @@
-# My screeps codebase
+# "AdjutantAI" My screeps codebase
+
+## "Adjutant"?
+When i started playing, i took a look at [Overmind](https://github.com/bencbartlett/Overmind) project, and saw that most naming was based on Starcraft's Zerg race, so i figured i would name my stuff based on Starcraft's Terran Race! That's why i'm naming this "AI" [Adjutant](https://starcraft.fandom.com/wiki/Adjutant).
 
 ## usage
 
