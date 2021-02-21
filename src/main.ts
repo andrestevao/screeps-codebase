@@ -1,9 +1,8 @@
 import { AdjutantAI } from './class.ai';
 
-const gameAI = new AdjutantAI();
-
 module.exports.loop = () => {
 
+  const gameAI = new AdjutantAI(Memory, Game);
   gameAI.tick();
 
 }

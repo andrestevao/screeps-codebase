@@ -1,0 +1,5 @@
+{
+  //this file is meant only to tell ts-jest to use the type definitions
+  "files": ["../src/index.d.ts"]
+}
+
